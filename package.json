@@ -1,0 +1,15 @@
+{
+  "name": "apimos",
+  "version": "0.0.1",
+  "description": "API para o a base de números primos no firebase.",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^4.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
