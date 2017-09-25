@@ -1,7 +1,7 @@
 {
   "name": "apimos",
   "version": "0.0.2",
-  "description": "Gerencia a distribuição dos números primos do projeto aguila.",
+  "description": "API para gerênciar a distribuição dos números primos do projeto aguila.",
   "engines": {
     "node": "6.11.1"
   },
