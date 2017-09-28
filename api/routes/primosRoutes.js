@@ -1,7 +1,7 @@
 'use strict';
 module.exports = app => {
-	var primos = require('../controllers/primosController');
+	const ctrlPrime = require('../controllers/primosController');
 
-	app.route('/primo').get(primos.getNextPrimo);
-	app.route('/primo/:primoID').put(primos.updatePrimo);
+	app.route('/prime').get(ctrlPrime.getNextPrime);
+	app.route('/prime/:primeId').put(ctrlPrime.updatePrime);
 };
