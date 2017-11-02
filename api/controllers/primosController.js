@@ -8,16 +8,17 @@ const getResult = (error = null, data = null) => {
 	return result;
 };
 
+const now = () => new Date().toLocaleString();
+
 exports.getNextPrime = (req, res) => {
 	const ref = db.conn.database().ref();
 	ref.orderByChild("calc").equalTo(0).limitToFirst(1).once('value')
 		.then(data => {
 			const nextPrime = Object.keys(data.val())[0];
 			const nextPrimeRef = ref.child(nextPrime);
-			nextPrimeRef.set({
+			nextPrimeRef.update({
 				"calc": 1,
-				"mersenne": 0,
-				"dtStart": new Date().format('yyyy-mm-dd HH:MM:ss')
+				"dtStart": now()
 			})
 			.then(response => res.json(getResult(null, {"nextPrime": nextPrime})))
 			.catch(error => res.json(getResult(error)));
@@ -32,8 +33,9 @@ exports.updatePrime = (req, res) => {
 		.then(data => {
 			const primeToUpdate = data.val();
 			if(primeToUpdate){
-				ref.set(req.body)
-					.then(response => res.json(getResult(null, req.body)))
+				req.body.dtEnd = now();
+				ref.update(req.body)
+					.then(response => res.json(getResult()))
 					.catch(error => res.json(getResult(error)));
 			}
 			else{
