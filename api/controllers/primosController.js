@@ -14,8 +14,9 @@ exports.getNextPrime = (req, res) => {
 		.then(data => {
 			const nextPrime = Object.keys(data.val())[0];
 			const nextPrimeRef = ref.child(nextPrime);
-			nextPrimeRef.update({
+			nextPrimeRef.set({
 				"calc": 1,
+				"mersenne": 0,
 				"dtStart": new Date().format('yyyy-mm-dd HH:MM:ss')
 			})
 			.then(response => res.json(getResult(null, {"nextPrime": nextPrime})))
