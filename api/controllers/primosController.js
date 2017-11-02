@@ -13,8 +13,10 @@ exports.getNextPrime = (req, res) => {
 	ref.orderByChild("calc").equalTo(0).limitToFirst(1).once('value')
 		.then(data => {
 			const nextPrime = Object.keys(data.val())[0];
-			ref.child(nextPrime).update({
-				"calc": 1
+			const nextPrimeRef = ref.child(nextPrime);
+			nextPrimeRef.update({
+				"calc": 1,
+				"dtStart": new Date().format('yyyy-mm-dd HH:MM:ss')
 			})
 			.then(response => res.json(getResult(null, {"nextPrime": nextPrime})))
 			.catch(error => res.json(getResult(error)));
