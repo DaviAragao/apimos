@@ -67,7 +67,7 @@ exports.getNextPrime = (req, res) => {
 			
 		})
 		.catch(error => res.json(getResult(error)));
-		//addPrime(ref);
+		addPrime(ref);
 };
 
 exports.updatePrime = (req, res) => {
@@ -78,8 +78,8 @@ exports.updatePrime = (req, res) => {
 			if(primeToUpdate){
 				req.body.dtEnd = now();
 				ref.update(req.body)
-					.then(response => console.log(response))
-					.catch(error => console.error(error));
+					.then(response => res.json(getResult(null, req.body)))
+					.catch(error => res.json(getResult(null, null)));
 			}
 			else{
 				res.json(getResult('Erro, primo inexistente.'));
@@ -87,4 +87,19 @@ exports.updatePrime = (req, res) => {
 			
 		})
 		.catch(error => res.json(getResult(error)));
+};
+
+exports.getLastMersenne = (req, res) => {
+	const ref = db.conn.database().ref();
+	ref.orderByChild("mersenne").equalTo(1).limitToLast(1).once('value')
+		.then(data => {
+			const lastMersenne = extractPrimeFromJson(data.val());
+			res.json(getResult(null, lastMersenne));
+		})
+		.catch(error => res.json(getResult(error)));
+};
+
+exports.calcMersenne = (req, res) => {
+	const mersenneNumber = Math.pow(2, req.params.prime) - 1;
+	res.json(getResult(null, bigNum(2).pow(req.params.prime).minus(1)));
 };

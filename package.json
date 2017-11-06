@@ -11,6 +11,7 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "big-number": "^0.4.0",
     "body-parser": "^1.18.2",
     "express": "^4.15.2",
     "firebase-admin": "^5.2.1"
