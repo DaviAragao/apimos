@@ -67,7 +67,7 @@ exports.getNextPrime = (req, res) => {
 			
 		})
 		.catch(error => res.json(getResult(error)));
-		addPrime(ref);
+		//addPrime(ref);
 };
 
 exports.updatePrime = (req, res) => {
