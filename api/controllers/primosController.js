@@ -78,8 +78,8 @@ exports.updatePrime = (req, res) => {
 			if(primeToUpdate){
 				req.body.dtEnd = now();
 				ref.update(req.body)
-					.then(response => res.json(getResult()))
-					.catch(error => res.json(getResult(error)));
+					.then(response => console.log(response))
+					.catch(error => console.error(error));
 			}
 			else{
 				res.json(getResult('Erro, primo inexistente.'));
