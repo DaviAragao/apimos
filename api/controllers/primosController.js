@@ -1,5 +1,6 @@
 'use strict';
 const db = require('../../db');
+const bigNumber = require('big-number');
 
 const getResult = (error = null, data = null) => {
 	let result = {};
@@ -70,6 +71,13 @@ exports.getNextPrime = (req, res) => {
 		addPrime(ref);
 };
 
+exports.getPrimeState = (req, res) => {
+	const ref = db.conn.database().ref(req.params.primeId);
+	ref.once('value')
+		.then(data => res.json(getResult(null, data.val())))
+		.catch(error => res.json(getResult(error)));
+}
+
 exports.updatePrime = (req, res) => {
 	const ref = db.conn.database().ref(req.params.primeId);
 	ref.once('value')
@@ -99,7 +107,19 @@ exports.getLastMersenne = (req, res) => {
 		.catch(error => res.json(getResult(error)));
 };
 
+exports.getLastCalc = (req, res) => {
+	const ref = db.conn.database().ref();
+	const reqUrl = req.url.split("/");
+	const compareParam = (reqUrl[reqUrl.length - 1] == "getLastCalculated") ? 2 : 1;
+
+	ref.orderByChild("calc").equalTo(compareParam).limitToLast(1).once('value')
+		.then(data => {
+			const lastCalculating = extractPrimeFromJson(data.val());
+			res.json(getResult(null, lastCalculating));
+		})
+		.catch(error => res.json(getResult(error)));
+};
+
 exports.calcMersenne = (req, res) => {
-	const mersenneNumber = Math.pow(2, req.params.prime) - 1;
-	res.json(getResult(null, bigNum(2).pow(req.params.prime).minus(1)));
+	res.json(getResult(null, bigNumber(2).pow(req.params.prime).minus(1).val()));
 };
