@@ -24,15 +24,15 @@ API para gerênciar a distribuição dos números primos.
      
 3. O último primo de mersenne encontrado pela aplicação.
 
-    `GET` https://apimos.herokuapp.com/prime/getLastMersenne
+    `GET` https://apimos.herokuapp.com/getLastMersenne
     
 4. O último expoente calculado.
 
-	`GET` https://apimos.herokuapp.com/prime/getLastCalculated
+	`GET` https://apimos.herokuapp.com/getLastCalculated
 	
 5. O último expoente que começou a ser calculado.
 
-	`GET` https://apimos.herokuapp.com/prime/getLastCalculating
+	`GET` https://apimos.herokuapp.com/getLastCalculating
 	
 6. O estado de um número na base de dados.
 
@@ -40,4 +40,4 @@ API para gerênciar a distribuição dos números primos.
 	
 7. Calcula o número de mersenne com base no parâmetro.
 
-	`GET` https://apimos.herokuapp.com/prime/calcMersenne/:prime
+	`GET` https://apimos.herokuapp.com/calcMersenne/:prime
