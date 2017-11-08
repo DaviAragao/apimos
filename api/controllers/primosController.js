@@ -76,7 +76,7 @@ exports.getPrimeState = (req, res) => {
 	ref.once('value')
 		.then(data => res.json(getResult(null, data.val())))
 		.catch(error => res.json(getResult(error)));
-}
+};
 
 exports.updatePrime = (req, res) => {
 	const ref = db.conn.database().ref(req.params.primeId);
@@ -120,6 +120,4 @@ exports.getLastCalc = (req, res) => {
 		.catch(error => res.json(getResult(error)));
 };
 
-exports.calcMersenne = (req, res) => {
-	res.json(getResult(null, bigNumber(2).pow(req.params.prime).minus(1).val()));
-};
+exports.calcMersenne = (req, res) => res.json(getResult(null, bigNumber(2).pow(req.params.prime).minus(1).val()));

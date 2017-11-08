@@ -6,11 +6,8 @@ module.exports = app => {
 	app.route('/prime/:primeId').get(ctrlPrime.getPrimeState);
 	app.route('/prime/:primeId').put(ctrlPrime.updatePrime);
 
-	/*
-	 * Rotas auxiliares.
-	 * */
-	app.route('/prime/getLastMersenne').get(ctrlPrime.getLastMersenne);
-	app.route('/prime/getLastCalculating').get(ctrlPrime.getLastCalc);
-	app.route('/prime/getLastCalculated').get(ctrlPrime.getLastCalc);
-	app.route('/prime/calcMersenne/:prime').get(ctrlPrime.calcMersenne);
+	app.route('/getLastMersenne').get(ctrlPrime.getLastMersenne);
+	app.route('/getLastCalculating').get(ctrlPrime.getLastCalc);
+	app.route('/getLastCalculated').get(ctrlPrime.getLastCalc);
+	app.route('/calcMersenne/:prime').get(ctrlPrime.calcMersenne);
 };
