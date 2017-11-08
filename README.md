@@ -12,15 +12,15 @@ API para gerênciar a distribuição dos números primos.
     
     Exemplo do corpo da requisição:
     
-    `{
-	      "calc": 0,
-	      "machine": {
-		      "clientType": 1,
-		      "macAddres": "34:64:a9:00:d0:23",
-		      "name": "aragao"
-	     },
-	     "mersenne": 1
-     }`
+		`{
+			"calc": 0,
+			"machine": {
+				"clientType": 1,
+				"macAddres": "34:64:a9:00:d0:23",
+				"name": "aragao"
+			},
+			"mersenne": 1
+		 }`
      
 3. O último primo de mersenne encontrado pela aplicação.
 
